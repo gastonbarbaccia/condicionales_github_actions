@@ -1,0 +1,33 @@
+
+name: Proyecto Test
+
+on:
+  push:
+    branches: [ "main","develop" ]
+  pull_request:
+    branches: [ "main","develop" ]
+  
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    name: Tarea 1
+    steps:
+      - name: Tarea 1
+        run: echo "Tarea 1"
+
+  job2:
+    runs-on: ubuntu-latest
+    name: Tarea 2
+    steps:
+      - name: Tarea 2
+        run: echo "Tarea 2"
+
+  deploy:
+      runs-on: ubuntu-latest
+      needs: test
+      if: github.ref == 'refs/heads/main'
+      steps:
+        - name: Deploy app
+          run: echo "Deploy to production"
+   
+ 
